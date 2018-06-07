@@ -1,0 +1,35 @@
+group 'com.group2.web-crawler'
+version '1.0'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.2.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+bootJar {
+    baseName = 'gs-rest-service'
+    version =  '0.1.0'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-web"
+    testCompile 'pl.pragmatists:JUnitParams:1.1.1'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation 'org.hamcrest:hamcrest-library:1.3'
+}
