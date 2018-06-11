@@ -27,6 +27,7 @@ repositories {
 }
 
 dependencies {
+    compile 'org.jsoup:jsoup:1.11.3'
     compile "org.springframework.boot:spring-boot-starter-web"
     testCompile 'pl.pragmatists:JUnitParams:1.1.1'
     testCompile 'org.springframework.boot:spring-boot-starter-test'
