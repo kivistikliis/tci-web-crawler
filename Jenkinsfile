@@ -4,8 +4,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                chmod 777 gradlew
+                
+                
                                         echo 'BUILDING IS HAPPENING'
+                
+                
+                chmod +x gradlew
+                 echo 'CHANGED PERMISSION OF gradlew'
+                
 
                  sh ./gradlew clean build
             }
