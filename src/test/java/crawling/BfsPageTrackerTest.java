@@ -10,11 +10,11 @@ import static org.hamcrest.Matchers.instanceOf;
 
 public class BfsPageTrackerTest {
 
-    private BfsPageTracker bfsPageTracker;
+    private IPageTracker bfsPageTracker;
 
     @Before
     public void setup() {
-        bfsPageTracker = new BfsPageTracker();
+
     }
 
     @Test
