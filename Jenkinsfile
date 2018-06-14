@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                chmod 777 gradlew
                                         echo 'BUILDING IS HAPPENING'
 
                  sh ./gradlew clean build
