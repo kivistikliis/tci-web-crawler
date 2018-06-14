@@ -6,7 +6,7 @@ pipeline {
             steps {
                                         echo 'BUILDING IS HAPPENING'
 
-                sh './gradlew clean build'
+                sudo sh './gradlew clean build'
             }
         }
         stage('Test') {
@@ -14,7 +14,7 @@ pipeline {
                             echo 'TESTING IS BEING CALLED'
 
 
-              sh './gradlew test'
+              sudo sh './gradlew test'
 
             }
         }
