@@ -4,18 +4,27 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                
+                
+                      sh 'echo "BUILDING IS HAPPENING"'
+                
+                
+                  sh 'chmod +x gradlew'
+                 sh 'echo "CHANGED PERMISSION OF gradlew"'
+                
+
+                 sh 'sh gradlew clean build'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                            sh 'echo "TESTING IS BEING CALLED"'
+
+
+               sh 'sh gradlew test'
+
             }
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
+
     }
 }
