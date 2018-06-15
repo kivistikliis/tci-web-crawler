@@ -6,22 +6,22 @@ pipeline {
             steps {
                 
                 
-                                        echo 'BUILDING IS HAPPENING'
+                      sh 'echo "BUILDING IS HAPPENING"'
                 
                 
-                chmod +x gradlew
-                 echo 'CHANGED PERMISSION OF gradlew'
+                  sh 'chmod +x gradlew'
+                 sh 'echo "CHANGED PERMISSION OF gradlew"'
                 
 
-                 sh ./gradlew clean build
+                 sh 'sh gradlew clean build'
             }
         }
         stage('Test') {
             steps {
-                            echo 'TESTING IS BEING CALLED'
+                            sh 'echo "TESTING IS BEING CALLED"'
 
 
-               sh ./gradlew test
+               sh 'sh gradlew test'
 
             }
         }
