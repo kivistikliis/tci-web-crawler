@@ -8,6 +8,12 @@ import api.response.models.CrawlingResult;
  * results into a response object that the controller sends as a HTTP response to the requesting client
  */
 public class CrawlingManager {
+    public CrawlingManager(String baseAddress) {
+        this.baseAddress = baseAddress;
+    }
+
+    private String baseAddress;
+
     public CrawlingResult crawlAllProducts() {
         // Here we call tha actual CrawlingApp class
 
