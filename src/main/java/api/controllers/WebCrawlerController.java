@@ -1,28 +1,22 @@
 package api.controllers;
 
-import api.response.models.CrawlingResponse;
+import api.models.request.CrawlingRequest;
+import api.models.response.CrawlingResponse;
 import crawling.CrawlingManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/web-crawler")
 public class WebCrawlerController {
-    private class CrawlingRequest {
-        private String baseAddress;
 
-        String getBaseAddress() {
-            return baseAddress;
-        }
 
-        public void setBaseAddress(String baseAddress) {
-            this.baseAddress = baseAddress;
-        }
-    }
+    @PostMapping({"/crawl/{name}", "/crawl"})
+    public ResponseEntity crawlProducts(@PathVariable("name") Optional<String> name, @RequestBody CrawlingRequest crawlingRequest) {
 
-    @PostMapping("/crawl/{name}")
-    public ResponseEntity crawlProducts(@PathVariable("name") String name, @RequestBody CrawlingRequest crawlingRequest) {
         CrawlingResponse crawlingResponse;
 
         // Retrieve the base address
@@ -32,8 +26,8 @@ public class WebCrawlerController {
         CrawlingManager crawlingManager = new CrawlingManager(baseAddress);
 
         // If it is called without a path variable, crawl all, otherwise by name
-        if (name != null) {
-            crawlingResponse = crawlingManager.crawlProductsByName(name);
+        if (name.isPresent()) {
+            crawlingResponse = crawlingManager.crawlProductsByName(name.get());
         } else {
             crawlingResponse = crawlingManager.crawlAllProducts();
         }

@@ -1,4 +1,4 @@
-package api.response.models;
+package api.models.response;
 
 public class CrawlingResult implements CrawlingResponse {
     public CrawlingResult(String retrievedData, int crawlingJobID) {

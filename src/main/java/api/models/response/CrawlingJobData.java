@@ -1,4 +1,4 @@
-package api.response.models;
+package api.models.response;
 
 public class CrawlingJobData implements CrawlingResponse {
 
