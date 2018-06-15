@@ -11,6 +11,9 @@ public class CrawlingManager {
     public CrawlingManager(String baseAddress) {
         this.baseAddress = baseAddress;
     }
+    public CrawlingManager() {
+
+    }
 
     private String baseAddress;
 

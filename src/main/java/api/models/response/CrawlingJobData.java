@@ -1,6 +1,6 @@
 package api.models.response;
 
-public class CrawlingJobData implements CrawlingResponse {
+public class CrawlingJobData  {
 
     public CrawlingJobData(int crawlingJobID, int timeElapsed, int pagesExplored, int searchDepth) {
         this.crawlingJobID = crawlingJobID;
