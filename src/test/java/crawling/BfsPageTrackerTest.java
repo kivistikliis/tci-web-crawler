@@ -5,9 +5,17 @@ import crawling.trackers.BfsPageTracker;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.instanceOf;
 
+//TODO: Add comments to explain some tests
 public class BfsPageTrackerTest {
 
     private IPageTracker bfsPageTracker;
@@ -23,37 +31,10 @@ public class BfsPageTrackerTest {
     }
 
     @Test
-    public void shouldAddPagesToTheStack() {
+    public void shouldAddPagesToTheList() {
+        List<String> pages = Arrays.asList("www.website1.com");
+        bfsPageTracker.addPages(pages);
 
-    }
-
-    @Test
-    public void shouldAddNullToTheStackWhenANewDepthLevelOccurs() {
-
-    }
-
-    @Test
-    public void shouldRemoveVisitedNodesFromTheStack() {
-
-    }
-
-    @Test
-    public void shouldGetTheMaximumScanDepth() {
-
-    }
-
-    @Test
-    public void shouldGetTheNextPageToBeScanned() {
-
-    }
-
-    @Test
-    public void shouldGetTheAlreadyScannedPages() {
-
-    }
-
-    @Test
-    public void shouldIndicateWhetherThereIsANextPageToScan() {
-
+        assertTrue(bfsPageTracker.hasNext());
     }
 }

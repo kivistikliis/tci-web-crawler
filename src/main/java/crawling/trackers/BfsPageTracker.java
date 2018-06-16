@@ -6,9 +6,7 @@ import java.util.List;
 
 public class BfsPageTracker implements IPageTracker {
     @Override
-    public void addPages(List<String> pages) {
-
-    }
+    public void addPages(List<String> pages) { }
 
     @Override
     public int getMaximumScanDepth() {
