@@ -1,5 +1,7 @@
 package crawling.product;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 
 public class Movie extends Product{
@@ -48,6 +50,12 @@ public class Movie extends Product{
     public void setDirector(String director) {
 
         this.director = director;
+    }
+
+    @Override
+    public String toString() {
+
+        return new Gson().toJson(this);
     }
 
 }

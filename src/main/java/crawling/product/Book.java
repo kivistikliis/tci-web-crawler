@@ -1,5 +1,7 @@
 package crawling.product;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 
 public class Book extends Product {
@@ -44,5 +46,11 @@ public class Book extends Product {
     public void setPublisher(String publisher) {
 
         this.publisher = publisher;
+    }
+
+    @Override
+    public String toString() {
+
+        return new Gson().toJson(this);
     }
 }

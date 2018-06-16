@@ -29,4 +29,12 @@ public class BookTest {
         Book book = new Book();
         Assert.assertArrayEquals(new String[]{}, book.getAuthors().toArray());
     }
+
+    @Test
+    public void shouldGiveJSONWhenToString(){
+
+        Book book = new Book();
+        book.addAuthor("test");
+        Assert.assertEquals("{\"authors\":[\"test\"],\"year\":0}", book.toString());
+    }
 }

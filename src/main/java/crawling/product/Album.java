@@ -1,5 +1,7 @@
 package crawling.product;
 
+import com.google.gson.Gson;
+
 public class Album extends Product {
 
     private String artist;
@@ -18,4 +20,9 @@ public class Album extends Product {
         this.artist = artist;
     }
 
+    @Override
+    public String toString() {
+
+        return new Gson().toJson(this);
+    }
 }

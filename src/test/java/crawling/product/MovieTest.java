@@ -58,4 +58,12 @@ public class MovieTest {
         Movie movie = new Movie();
         Assert.assertArrayEquals(new String[]{},movie.getWriters().toArray());
     }
+
+    @Test
+    public void shouldGiveJSONWhenToString(){
+
+        Movie movie = new Movie();
+        movie.addStar("test");
+        Assert.assertEquals("{\"stars\":[\"test\"],\"writers\":[],\"year\":0}", movie.toString());
+    }
 }
