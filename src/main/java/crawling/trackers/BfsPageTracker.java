@@ -18,6 +18,7 @@ public class BfsPageTracker implements IPageTracker {
         Set<String> hs = new HashSet<>();
         hs.addAll(pages);
         hs.remove(null);
+
         pagesToScan.addAll(hs);
     }
 
@@ -28,6 +29,7 @@ public class BfsPageTracker implements IPageTracker {
 
     @Override
     public String getNext() {
+        pagesToScan.get(nextPage);
         return null;
     }
 
