@@ -24,6 +24,10 @@ jobs:
     steps:
       - checkout
 
+      - run:
+          name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
+          command: sudo chmod +x ./gradlew
+
       # Download and cache dependencies
       - restore_cache:
           keys:
