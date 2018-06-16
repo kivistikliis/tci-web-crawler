@@ -16,6 +16,7 @@ public class BfsPageTracker implements IPageTracker {
 
     @Override
     public void addPages(List<String> pages) {
+        pages.remove(null);
         pagesToScan.addAll(pages);
     }
 

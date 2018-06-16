@@ -37,4 +37,11 @@ public class BfsPageTrackerTest {
 
         assertTrue(bfsPageTracker.hasNext());
     }
+
+    @Test
+    public void shouldNotAddANullElement() {
+        bfsPageTracker.addPages(Arrays.asList(null, null));
+
+        assertFalse(bfsPageTracker.hasNext());
+    }
 }
