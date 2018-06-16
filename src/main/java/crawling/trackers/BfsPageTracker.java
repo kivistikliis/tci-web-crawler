@@ -2,8 +2,7 @@ package crawling.trackers;
 
 import crawling.interfaces.IPageTracker;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class BfsPageTracker implements IPageTracker {
 
@@ -16,8 +15,10 @@ public class BfsPageTracker implements IPageTracker {
 
     @Override
     public void addPages(List<String> pages) {
-        pages.remove(null);
-        pagesToScan.addAll(pages);
+        Set<String> hs = new HashSet<>();
+        hs.addAll(pages);
+        hs.remove(null);
+        pagesToScan.addAll(hs);
     }
 
     @Override
