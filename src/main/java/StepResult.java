@@ -1,5 +1,6 @@
 import model.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StepResult {
@@ -9,6 +10,14 @@ public class StepResult {
     public int maxSearchDepth;
     public List<String> scannedPages;
 
-    public StepResult(List<Product> collectedProducts, int elapsedTime, int maxSearchDepth, List<String> scannedPages) {
+    public StepResult(){
+        this.collectedProducts = new ArrayList<>();
+        this.scannedPages = new ArrayList<>();
+    }
+    public StepResult(int elapsedTime, int maxSearchDepth) {
+        this.elapsedTime = elapsedTime;
+        this.maxSearchDepth = maxSearchDepth;
+        this.collectedProducts = new ArrayList<>();
+        this.scannedPages = new ArrayList<>();
     }
 }
