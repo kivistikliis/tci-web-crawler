@@ -14,7 +14,7 @@ public class BfsPageTrackerTest {
 
     @Before
     public void setup() {
-
+        bfsPageTracker = new BfsPageTracker();
     }
 
     @Test
