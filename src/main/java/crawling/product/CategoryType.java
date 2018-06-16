@@ -1,4 +1,4 @@
-package scraper;
+package crawling.product;
 
 public enum CategoryType {
 

@@ -1,4 +1,4 @@
-package scraper;
+package crawling.product;
 
 import org.junit.Assert;
 import org.junit.Test;
