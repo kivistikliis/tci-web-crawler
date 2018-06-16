@@ -45,6 +45,19 @@ public class BfsPageTrackerTest {
         assertFalse(bfsPageTracker.hasNext());
     }
 
+    @Test
+    public void shouldNotAddAnAlreadyAddedPage() {
+        List<String> pages = Arrays.asList("www.website1.com");
+        bfsPageTracker.addPages(pages);
+        bfsPageTracker.addPages(pages);
+
+        List<String> scannedPages = new ArrayList<>();
+        while (bfsPageTracker.hasNext()) {
+            scannedPages.add(bfsPageTracker.getNext());
+        }
+
+        assertEquals(1, scannedPages.size());
+    }
 
     @Test
     public void shouldNotAddDuplicatePages() {

@@ -29,8 +29,8 @@ public class BfsPageTracker implements IPageTracker {
 
     @Override
     public String getNext() {
-        pagesToScan.get(nextPage);
-        return null;
+        nextPage++;
+        return pagesToScan.get(nextPage - 1);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class BfsPageTracker implements IPageTracker {
 
     @Override
     public Boolean hasNext() {
-        if(nextPage+1 <= pagesToScan.size())
+        if (nextPage + 1 <= pagesToScan.size())
             return true;
         return false;
     }
