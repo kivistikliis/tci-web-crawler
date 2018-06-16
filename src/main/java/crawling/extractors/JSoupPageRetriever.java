@@ -1,6 +1,8 @@
 package crawling.extractors;
 
 import crawling.interfaces.IPageRetriever;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 /**
  * Responsible for retrieving HTML from pages
@@ -16,6 +18,10 @@ public class JSoupPageRetriever implements IPageRetriever {
      */
     @Override
     public String getHTMLPage(String url) throws Exception {
-        return null;
+        // Let exceptions be handled by the caller process
+        // so that the caller process is aware or the mistakes made (empty, null, or invalid url)
+        // and let it decide how to continue in each case
+        Document doc = Jsoup.connect(url).get();
+        return doc.html();
     }
 }
