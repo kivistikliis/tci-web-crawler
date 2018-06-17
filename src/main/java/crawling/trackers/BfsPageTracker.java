@@ -77,9 +77,6 @@ public class BfsPageTracker implements IPageTracker {
 
     @Override
     public Boolean hasNext() {
-        if (nextPage + 1 < pagesToScan.size()) {
-            return true;
-        }
-        return false;
+        return nextPage + 1 < pagesToScan.size();
     }
 }
