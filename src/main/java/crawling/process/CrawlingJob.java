@@ -4,6 +4,7 @@ import crawling.interfaces.ILinkExtractor;
 import crawling.interfaces.IPageRetriever;
 import crawling.interfaces.IPageTracker;
 import crawling.interfaces.IProductExtractor;
+import crawling.models.CrawlingResult;
 
 public class CrawlingJob {
 
@@ -19,5 +20,9 @@ public class CrawlingJob {
     private IPageTracker pageTracker;
     private IProductExtractor productExtractor;
 
+
+    public CrawlingResult start() {
+        return null;
+    }
 
 }
