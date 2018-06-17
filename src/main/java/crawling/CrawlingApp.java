@@ -1,12 +1,16 @@
 package crawling;
 
+import crawling.extractors.JSoupLinkExtractor;
+import crawling.extractors.JSoupPageRetriever;
 import crawling.interfaces.ILinkExtractor;
 import crawling.interfaces.IPageRetriever;
 import crawling.interfaces.IPageTracker;
-import crawling.interfaces.IProductExtractor;
 import crawling.models.CrawlingJobData;
 import crawling.models.CrawlingResult;
 import crawling.process.CrawlingJob;
+import crawling.product.IProductExtractor;
+import crawling.product.StandardProductExtractor;
+import crawling.trackers.BfsPageTracker;
 
 /**
  * The only purpose of this class is to work with the Controller and combine and return all crawling
@@ -29,10 +33,14 @@ public class CrawlingApp {
     private String baseAddress;
 
     public CrawlingResult crawlAllProducts() {
+        linkExtractor = new JSoupLinkExtractor();
+        pageRetriever = new JSoupPageRetriever();
+        pageTracker = new BfsPageTracker();
+        productExtractor = new StandardProductExtractor();
+
         CrawlingJob crawlingJob = new CrawlingJob(linkExtractor, pageRetriever, pageTracker, productExtractor);
 
-        crawlingJob.start();
-        return null;
+        return crawlingJob.start(baseAddress);
     }
 
     public CrawlingResult crawlProductsByName(String name) {

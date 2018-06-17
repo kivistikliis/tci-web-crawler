@@ -1,12 +1,11 @@
 import crawling.interfaces.ILinkExtractor;
 import crawling.interfaces.IPageRetriever;
 import crawling.interfaces.IPageTracker;
-import crawling.interfaces.IProductExtractor;
 import crawling.models.CrawlingResult;
 import crawling.process.CrawlingJob;
+import crawling.product.IProductExtractor;
 import org.junit.Test;
 
-import java.net.ConnectException;
 import java.net.UnknownHostException;
 
 import static org.junit.Assert.*;
