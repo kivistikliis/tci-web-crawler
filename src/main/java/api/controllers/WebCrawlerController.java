@@ -1,5 +1,6 @@
 package api.controllers;
 
+
 import api.models.CrawlingRequest;
 import crawling.models.CrawlingJobData;
 import crawling.models.CrawlingResult;
@@ -18,6 +19,8 @@ public class WebCrawlerController {
     public String home() {
         return "Let's crawl the web guys!";
     }
+
+    Gson json = new Gson();
 
     @PostMapping({"/crawl/{name}", "/crawl"})
     public ResponseEntity crawlProducts(@PathVariable("name") Optional<String> name, @RequestBody CrawlingRequest crawlingRequest) {
@@ -41,7 +44,7 @@ public class WebCrawlerController {
         if (crawlingResult == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         } else {
-            return ResponseEntity.ok(crawlingResult);
+            return ResponseEntity.ok(json.toJson(crawlingResult));
         }
     }
 
