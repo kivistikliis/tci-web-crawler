@@ -1,4 +1,4 @@
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+package crawling;
 import crawling.extractors.JSoupPageRetriever;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;

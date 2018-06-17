@@ -1,3 +1,5 @@
+package crawling;
+
 import crawling.extractors.JSoupLinkExtractor;
 import crawling.extractors.JSoupPageRetriever;
 import junitparams.JUnitParamsRunner;
