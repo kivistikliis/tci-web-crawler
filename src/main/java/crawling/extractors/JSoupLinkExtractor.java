@@ -1,7 +1,9 @@
 package crawling.extractors;
 
 import crawling.interfaces.ILinkExtractor;
-
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 /**
  * Implementation of ILinkExtractor
@@ -15,6 +17,26 @@ public class JSoupLinkExtractor implements ILinkExtractor {
      */
     @Override
     public String[] extractLinks(String page, String baseURL) {
-        return null;
+        Document doc = Jsoup.parse(page);
+        Elements elements = doc.getElementsByTag("a");
+
+        String[] links = new String[elements.size()];
+        for (int i = 0 ; i < elements.size() ; i ++){
+
+            String linkReference = elements.get(i).attr("href");
+            if(!linkReference.startsWith("http")){
+
+                if(linkReference.charAt(0)=='/')
+                    linkReference = linkReference.substring(1); // to avoid double / in url
+
+                if(baseURL.endsWith("/"))
+                    baseURL = baseURL.substring(0, baseURL.length()-1); // to avoid double / in url
+
+                linkReference = baseURL + "/" + linkReference; // to complete all links
+            }
+            links[i] = linkReference;
+        }
+
+        return links;
     }
 }
