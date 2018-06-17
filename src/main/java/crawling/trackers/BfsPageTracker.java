@@ -2,7 +2,6 @@ package crawling.trackers;
 
 import crawling.interfaces.IPageTracker;
 import org.apache.commons.collections4.CollectionUtils;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
