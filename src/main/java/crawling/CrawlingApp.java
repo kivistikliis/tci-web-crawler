@@ -40,12 +40,21 @@ public class CrawlingApp {
 
         CrawlingJob crawlingJob = new CrawlingJob(linkExtractor, pageRetriever, pageTracker, productExtractor);
 
-        return crawlingJob.start(baseAddress);
+        crawlingJob.start(baseAddress, null);
+        return crawlingJob.crawlingResult;
     }
 
     public CrawlingResult crawlProductsByName(String name) {
+        linkExtractor = new JSoupLinkExtractor();
+        pageRetriever = new JSoupPageRetriever();
+        pageTracker = new BfsPageTracker();
+        productExtractor = new StandardProductExtractor();
 
-        return null;
+        CrawlingJob crawlingJob = new CrawlingJob(linkExtractor, pageRetriever, pageTracker, productExtractor);
+
+
+        crawlingJob.start(baseAddress, name);
+        return crawlingJob.crawlingResult;
     }
 
     public CrawlingJobData getCrawlingJobDataByID(int crawlingJobID) {

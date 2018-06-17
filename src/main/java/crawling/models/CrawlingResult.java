@@ -12,7 +12,6 @@ public class CrawlingResult {
 
     // Getters are required, so the Spring Framework is able to retrieve the data (under the hood)
     public String getRetrievedData() {
-        retrievedData = retrievedData.replaceAll("^\"|\"$", "");
         return retrievedData;
     }
 
