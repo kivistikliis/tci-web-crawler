@@ -1,9 +1,9 @@
 package api.controllers;
 
 import api.models.request.CrawlingRequest;
-import api.models.response.CrawlingJobData;
-import api.models.response.CrawlingResult;
-import crawling.CrawlingManager;
+import crawling.models.CrawlingJobData;
+import crawling.models.CrawlingResult;
+import crawling.CrawlingApp;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,13 +24,13 @@ public class WebCrawlerController {
         String baseAddress = crawlingRequest.getBaseAddress();
 
         // Start new crawling manager
-        CrawlingManager crawlingManager = new CrawlingManager(baseAddress);
+        CrawlingApp crawlingApp = new CrawlingApp(baseAddress);
 
         // If it is called without a path variable, crawl all, otherwise by name
         if (name.isPresent()) {
-            crawlingResult = crawlingManager.crawlProductsByName(name.get());
+            crawlingResult = crawlingApp.crawlProductsByName(name.get());
         } else {
-            crawlingResult = crawlingManager.crawlAllProducts();
+            crawlingResult = crawlingApp.crawlAllProducts();
         }
 
         // Check if all crawling executed correctly and send a response
@@ -44,9 +44,9 @@ public class WebCrawlerController {
     @GetMapping({"/crawling-jobs/{id}",})
     public ResponseEntity getCrawlingJobDataByID(@PathVariable("id") int id) {
         // Start new crawling manager
-        CrawlingManager crawlingManager = new CrawlingManager();
+        CrawlingApp crawlingApp = new CrawlingApp();
 
-        CrawlingJobData crawlingJobData = crawlingManager.getCrawlingJobDataByID(id);
+        CrawlingJobData crawlingJobData = crawlingApp.getCrawlingJobDataByID(id);
 
         // Check if all crawling executed correctly and send a response
         if (crawlingJobData == null) {

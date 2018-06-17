@@ -1,4 +1,4 @@
-package api.models.response;
+package crawling.models;
 
 public class CrawlingResult {
     public CrawlingResult(String retrievedData, int crawlingJobID) {
@@ -19,4 +19,11 @@ public class CrawlingResult {
         return crawlingJobID;
     }
 
+    public void setRetrievedData(String retrievedData) {
+        this.retrievedData = retrievedData;
+    }
+
+    public void setCrawlingJobID(int crawlingJobID) {
+        this.crawlingJobID = crawlingJobID;
+    }
 }
