@@ -16,7 +16,7 @@ import java.util.List;
 
 public class CrawlingJob {
     static int idCounter;
-    int jobId;
+    public int jobId;
     Gson json = new GsonBuilder().setPrettyPrinting().create();
 
     public CrawlingJob(ILinkExtractor linkExtractor, IPageRetriever pageRetriever, IPageTracker pageTracker, IProductExtractor productExtractor) {

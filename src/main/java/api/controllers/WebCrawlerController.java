@@ -2,6 +2,7 @@ package api.controllers;
 
 
 import api.models.CrawlingRequest;
+import com.google.gson.Gson;
 import crawling.models.CrawlingJobData;
 import crawling.models.CrawlingResult;
 import crawling.CrawlingApp;
