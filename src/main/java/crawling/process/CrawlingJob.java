@@ -16,10 +16,10 @@ import java.util.List;
 
 public class CrawlingJob {
     static int idCounter;
-    int jobId;
     Gson json = new Gson();
     public CrawlingResult crawlingResult;
     public CrawlingJobData crawlingJobData;
+    public int jobId;
 
     public CrawlingJob(ILinkExtractor linkExtractor, IPageRetriever pageRetriever, IPageTracker pageTracker, IProductExtractor productExtractor) {
         this.linkExtractor = linkExtractor;

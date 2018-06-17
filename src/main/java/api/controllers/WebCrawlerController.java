@@ -1,6 +1,7 @@
 package api.controllers;
 
-import api.models.request.CrawlingRequest;
+
+import api.models.CrawlingRequest;
 import com.google.gson.Gson;
 import crawling.models.CrawlingJobData;
 import crawling.models.CrawlingResult;
@@ -14,6 +15,12 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/web-crawler")
 public class WebCrawlerController {
+
+    @RequestMapping("")
+    public String home() {
+        return "Let's crawl the web guys!";
+    }
+
     Gson json = new Gson();
 
     @PostMapping({"/crawl/{name}", "/crawl"})
@@ -43,7 +50,7 @@ public class WebCrawlerController {
     }
 
     @GetMapping({"/crawling-jobs/{id}",})
-    public ResponseEntity getCrawlingJobDataByID(@PathVariable("id") int id) {
+    public ResponseEntity getCrawlingJobDataById(@PathVariable("id") int id) {
         // Start new crawling manager
         CrawlingApp crawlingApp = new CrawlingApp();
 
@@ -55,12 +62,6 @@ public class WebCrawlerController {
         } else {
             return ResponseEntity.ok(crawlingJobData);
         }
-    }
-
-
-    @RequestMapping("/home")
-    public String home() {
-        return "Let's crawl the web guys!";
     }
 }
 
