@@ -79,4 +79,16 @@ public class BfsPageTrackerTest {
 
         assertEquals(1, bfsPageTracker.getMaximumScanDepth());
     }
+
+    @Test
+    public void shouldGetTheAlreadyScannedPages() {
+        List<String> pages = Arrays.asList("www.website1.com", "www.website2.com");
+        bfsPageTracker.addPages(pages);
+
+        while (bfsPageTracker.hasNext()) {
+            bfsPageTracker.getNext();
+        }
+
+        assertEquals(2, bfsPageTracker.getScannedPages().size());
+    }
 }
