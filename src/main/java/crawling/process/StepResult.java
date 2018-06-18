@@ -1,4 +1,6 @@
-import model.Product;
+package crawling.process;
+
+import crawling.product.Product;
 
 import java.util.ArrayList;
 import java.util.List;

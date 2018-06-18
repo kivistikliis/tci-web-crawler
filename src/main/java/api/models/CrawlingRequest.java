@@ -1,4 +1,4 @@
-package api.models.request;
+package api.models;
 
 public class CrawlingRequest {
 
@@ -11,4 +11,16 @@ public class CrawlingRequest {
     public void setBaseAddress(String baseAddress) {
         this.baseAddress = baseAddress;
     }
+
+    private String algorithm;
+
+    public String getAlgorithm() {
+        return algorithm;
+    }
+
+    public void setAlgorithm(String algorithm) {
+        this.algorithm = algorithm;
+    }
+
+
 }

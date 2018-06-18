@@ -1,6 +1,9 @@
 package api.controllers;
 
-import api.models.request.CrawlingRequest;
+
+import api.models.CrawlingRequest;
+import com.google.gson.Gson;
+import crawling.CrawlingJobRepository;
 import crawling.models.CrawlingJobData;
 import crawling.models.CrawlingResult;
 import crawling.CrawlingApp;
@@ -14,6 +17,13 @@ import java.util.Optional;
 @RequestMapping("/web-crawler")
 public class WebCrawlerController {
 
+    @RequestMapping("")
+    public String home() {
+        return "Let's crawl the web guys!";
+    }
+
+    Gson json = new Gson();
+    CrawlingJobRepository crawlingJobRepository = new CrawlingJobRepository();
 
     @PostMapping({"/crawl/{name}", "/crawl"})
     public ResponseEntity crawlProducts(@PathVariable("name") Optional<String> name, @RequestBody CrawlingRequest crawlingRequest) {
@@ -28,9 +38,9 @@ public class WebCrawlerController {
 
         // If it is called without a path variable, crawl all, otherwise by name
         if (name.isPresent()) {
-            crawlingResult = crawlingApp.crawlProductsByName(name.get());
+            crawlingResult = crawlingApp.crawlAllProducts(name.get(), crawlingRequest.getAlgorithm());
         } else {
-            crawlingResult = crawlingApp.crawlAllProducts();
+            crawlingResult = crawlingApp.crawlAllProducts(null, crawlingRequest.getAlgorithm());
         }
 
         // Check if all crawling executed correctly and send a response
@@ -42,7 +52,7 @@ public class WebCrawlerController {
     }
 
     @GetMapping({"/crawling-jobs/{id}",})
-    public ResponseEntity getCrawlingJobDataByID(@PathVariable("id") int id) {
+    public ResponseEntity getCrawlingJobDataById(@PathVariable("id") int id) {
         // Start new crawling manager
         CrawlingApp crawlingApp = new CrawlingApp();
 
@@ -54,12 +64,6 @@ public class WebCrawlerController {
         } else {
             return ResponseEntity.ok(crawlingJobData);
         }
-    }
-
-
-    @RequestMapping("/home")
-    public String home() {
-        return "Let's crawl the web guys!";
     }
 }
 
