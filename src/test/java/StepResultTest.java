@@ -1,6 +1,7 @@
+import crawling.process.StepResult;
+import crawling.product.Product;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import model.Product;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

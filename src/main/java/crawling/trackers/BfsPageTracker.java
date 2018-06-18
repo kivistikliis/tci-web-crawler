@@ -2,10 +2,8 @@ package crawling.trackers;
 
 import crawling.interfaces.IPageTracker;
 import org.apache.commons.collections4.CollectionUtils;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -28,8 +26,8 @@ public class BfsPageTracker implements IPageTracker {
     }
 
     private void filterPagesToScan(List<String> pagesWithoutNulls) {
-        CollectionUtils.removeAll(pagesWithoutNulls, pagesToScan);
-        pagesToScan.addAll(pagesWithoutNulls);
+        Collection<String> uniqueLinks = CollectionUtils.removeAll(pagesWithoutNulls, pagesToScan);
+        pagesToScan.addAll(uniqueLinks);
     }
 
     @Override
@@ -43,6 +41,10 @@ public class BfsPageTracker implements IPageTracker {
         } else if(hasNext()) {
             if (pagesToScan.get(nextPage + 1) != null) {
                 filterAddedPages(pages);
+            } else {
+                filterAddedPages(pages);
+                pagesToScan.add(null);
+                maxdepth++;
             }
         }
     }
@@ -71,7 +73,9 @@ public class BfsPageTracker implements IPageTracker {
 
     @Override
     public List<String> getScannedPages() {
-        return pagesToScan.subList(0, nextPage);
+        List<String> pagesWithoutNulls = new ArrayList<>(pagesToScan.subList(0, nextPage));
+        pagesWithoutNulls.removeAll(Collections.singleton(null));
+        return pagesWithoutNulls;
     }
 
     @Override
