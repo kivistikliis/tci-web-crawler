@@ -34,8 +34,11 @@ public class CrawlingJob {
     private IPageTracker pageTracker;
     private IProductExtractor productExtractor;
 
+    public void start(String baseAddress, String searchName) throws Exception{
 
-    public void start(String baseAddress, String searchName) {
+        // verify that base address is good. Let it throw exception if the base is invalid.
+        pageRetriever.getHTMLPage(baseAddress);
+
 
         long startTimeMs = System.currentTimeMillis();
 
@@ -50,7 +53,7 @@ public class CrawlingJob {
             try{
                 String addressToAnalyse = pageTracker.getNext();
 
-                if(addressToAnalyse.contains("facebook") || addressToAnalyse.contains("twitter"))
+                if(addressToAnalyse == null || addressToAnalyse.contains("facebook") || addressToAnalyse.contains("twitter") )
                     continue;
 
                 // get HTML content of the given address
@@ -66,9 +69,9 @@ public class CrawlingJob {
                 // store found product
                 allProducts.addAll(products);
 
-                if(searchName!=null){
+                if(searchName!=null && products.size()>0){
                     if(products.get(0).getName().toLowerCase().equals(searchName.toLowerCase())){
-                        finalize(startTimeMs, json.toJson(products.get(0)));
+                        finalize(startTimeMs, products.get(0));
                         return;
                     }
                 }
@@ -78,15 +81,23 @@ public class CrawlingJob {
                 e.printStackTrace();
             }
         }
-        finalize(startTimeMs, json.toJson(allProducts));
+
+        if(searchName!=null) // if it reached this far, the searched object was not found
+            finalize(startTimeMs, "");
+        else
+            finalize(startTimeMs, allProducts);
     }
 
-    private void finalize(long startTimeMs, String jsonResults){
+    private void finalize(long startTimeMs, Object products){
         long endTimeMs = System.currentTimeMillis();
         int pagesExplored = pageTracker.getScannedPages().size();
         int maxDepth = pageTracker.getMaximumScanDepth();
-        this.crawlingJobData = new CrawlingJobData(jobId, (int)(endTimeMs-startTimeMs), pagesExplored, maxDepth);
-        this.crawlingResult = new CrawlingResult(jsonResults, jobId);
+
+        String classname = pageTracker.getClass().getName(); // get Bfs or Dfs out
+        classname = classname.substring(classname.lastIndexOf(".")+1);
+        classname = classname.substring(0,3).toLowerCase();
+        this.crawlingJobData = new CrawlingJobData(jobId, (int)(endTimeMs-startTimeMs), pagesExplored, maxDepth, classname);
+        this.crawlingResult = new CrawlingResult(products, jobId);
     }
 
 }

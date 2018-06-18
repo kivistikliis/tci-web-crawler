@@ -1,26 +1,25 @@
 package crawling;
 
-import crawling.interfaces.ICrawlingJobRepository;
 import crawling.process.CrawlingJob;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CrawlingJobRepository implements ICrawlingJobRepository {
+public final class CrawlingJobRepository {
 
-    private List<CrawlingJob> crawlingJobList;
+    private static List<CrawlingJob> crawlingJobList;
 
     public CrawlingJobRepository() {
         crawlingJobList = new ArrayList<>();
     }
 
-    @Override
-    public void save(CrawlingJob job) {
+
+    public static void save(CrawlingJob job) {
         crawlingJobList.add(job);
     }
 
-    @Override
-    public CrawlingJob getById(int id) {
+
+    public static CrawlingJob getById(int id) {
         for (CrawlingJob job : crawlingJobList) {
             if (job.jobId == id)
                 return job;

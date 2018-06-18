@@ -44,6 +44,7 @@ public class BfsPageTracker implements IPageTracker {
             } else {
                 filterAddedPages(pages);
                 pagesToScan.add(null);
+                maxdepth++;
             }
         }
     }

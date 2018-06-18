@@ -41,6 +41,7 @@ public class CrawlingJobRepositoryTest {
         crawlingJobRepository.save(job);
 
         assertThat(crawlingJobRepository.getById(job.jobId), equalTo(job));
+        assertThat(crawlingJobRepository.getAll().size(), equalTo(1));
     }
 
     @Test
@@ -57,5 +58,7 @@ public class CrawlingJobRepositoryTest {
         assertThat(crawlingJobRepository.getById(job1.jobId), equalTo(job1));
         assertThat(crawlingJobRepository.getById(job2.jobId), equalTo(job2));
         assertThat(crawlingJobRepository.getById(job3.jobId), equalTo(job3));
+
+        assertThat(crawlingJobRepository.getAll().size(), equalTo(3));
     }
 }

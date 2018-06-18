@@ -3,6 +3,7 @@ package api.controllers;
 
 import api.models.CrawlingRequest;
 import com.google.gson.Gson;
+import crawling.CrawlingJobRepository;
 import crawling.models.CrawlingJobData;
 import crawling.models.CrawlingResult;
 import crawling.CrawlingApp;
@@ -22,6 +23,7 @@ public class WebCrawlerController {
     }
 
     Gson json = new Gson();
+    CrawlingJobRepository crawlingJobRepository = new CrawlingJobRepository();
 
     @PostMapping({"/crawl/{name}", "/crawl"})
     public ResponseEntity crawlProducts(@PathVariable("name") Optional<String> name, @RequestBody CrawlingRequest crawlingRequest) {
@@ -36,16 +38,16 @@ public class WebCrawlerController {
 
         // If it is called without a path variable, crawl all, otherwise by name
         if (name.isPresent()) {
-            crawlingResult = crawlingApp.crawlProductsByName(name.get());
+            crawlingResult = crawlingApp.crawlAllProducts(name.get(), crawlingRequest.getAlgorithm());
         } else {
-            crawlingResult = crawlingApp.crawlAllProducts();
+            crawlingResult = crawlingApp.crawlAllProducts(null, crawlingRequest.getAlgorithm());
         }
 
         // Check if all crawling executed correctly and send a response
         if (crawlingResult == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         } else {
-            return ResponseEntity.ok(json.toJson(crawlingResult));
+            return ResponseEntity.ok(crawlingResult);
         }
     }
 

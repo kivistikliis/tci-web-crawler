@@ -27,24 +27,15 @@ public class WebCrawlerControllerTest {
     }
 
     @Test
-    public void shouldCr() {
-        CrawlingRequest crawlingRequest = new CrawlingRequest();
-        crawlingRequest.setBaseAddress("https://volunteero-events.herokuapp.com/");
-
-        ResponseEntity<CrawlingResult> response =
-                restTemplate.postForEntity("/web-crawler/crawl", crawlingRequest, CrawlingResult.class);
-
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-    }
-
-    @Test
     public void shouldSuccessfullyCrawlAWebsite() {
         CrawlingRequest crawlingRequest = new CrawlingRequest();
-        crawlingRequest.setBaseAddress("https://volunteero-events.herokuapp.com/");
+        crawlingRequest.setBaseAddress("https://volunteero-events.herokuapp.com");
+        crawlingRequest.setAlgorithm("bfs");
 
         ResponseEntity<CrawlingResult> response =
                 restTemplate.postForEntity("/web-crawler/crawl", crawlingRequest, CrawlingResult.class);
 
+        response.getStatusCode();
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 
@@ -52,6 +43,7 @@ public class WebCrawlerControllerTest {
     public void shouldBeNullIfTheUrlAddressIsWrong() {
         CrawlingRequest crawlingRequest = new CrawlingRequest();
         crawlingRequest.setBaseAddress("www.page.page");
+        crawlingRequest.setAlgorithm("bfs");
 
         ResponseEntity<CrawlingResult> response =
                 restTemplate.postForEntity("/web-crawler/crawl",
